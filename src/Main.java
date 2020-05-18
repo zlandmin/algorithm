@@ -1,18 +1,3 @@
-import binarysearch.BinarySearch;
-import leetcode._10.LC_10;
-import leetcode._120.LC_120;
-import leetcode._56.LC_56;
-import leetcode._57.LC_57;
-import leetcode._609.LC_609;
-import leetcode.common.Interval;
-import sort.MergeSort;
-import sort.QuickSort;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 public class Main {
     public static void main(String[] args) {
 //        List<Interval> intervals = new ArrayList<>();
