@@ -49,5 +49,6 @@ public class Main {
 //        }};
 //
 //        System.out.println(new LC_120().minimumTotal(triangle));
+
     }
 }
