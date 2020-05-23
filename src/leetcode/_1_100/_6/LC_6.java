@@ -27,4 +27,24 @@ Y A   H R
 P     I
  */
 public class LC_6 {
+    public String convert(String s, int numRows) {
+        StringBuilder[] sbs = new StringBuilder[numRows];
+        for (int i = 0; i < numRows; i++) {
+            sbs[i] = new StringBuilder();
+        }
+        int i = 0;
+        while (i < s.length()) {
+            for (int index = 0; index < numRows && i < s.length(); index++) {
+                sbs[index].append(s.charAt(i++));
+            }
+            for (int index = numRows - 2; index >= 1 && i < s.length(); index--) {
+                sbs[index].append(s.charAt(i++));
+            }
+        }
+
+        for (int k = 1; k < numRows; k++) {
+            sbs[0].append(sbs[k]);
+        }
+        return sbs[0].toString();
+    }
 }
