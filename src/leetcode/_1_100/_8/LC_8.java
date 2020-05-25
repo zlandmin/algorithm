@@ -44,4 +44,44 @@ Explanation: The number "-91283472332" is out of the range of a 32-bit signed in
              Thefore INT_MIN (−231) is returned.
  */
 public class LC_8 {
+    public int myAtoi(String str) {
+        long res = 0;
+        boolean positive = true;
+        int index = 0;
+        char c = ' ';
+        for (; index < str.length(); index++) {
+            c = str.charAt(index);
+            if (c != ' ') {
+                if (c == '-') {
+                    positive = false;
+                    index++;
+                }
+
+                if (c == '+') {
+                    index++;
+                }
+                break;
+            }
+        }
+
+        for (; index < str.length(); index++) {
+            c = str.charAt(index);
+            if (Character.isDigit(c)) {
+                res = res * 10 + Character.getNumericValue(c);
+            }
+            else
+                break;
+
+            if (res > Integer.MAX_VALUE) {
+                if (positive) {
+                    return Integer.MAX_VALUE;
+                } else {
+                    return Integer.MIN_VALUE;
+                }
+            }
+        }
+
+        res = positive ? res : -res;
+        return (int)res;
+    }
 }
