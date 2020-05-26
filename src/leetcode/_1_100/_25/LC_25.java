@@ -1,4 +1,7 @@
 package leetcode._1_100._25;
+
+import leetcode.common.ListNode;
+
 /*
 25. Reverse Nodes in k-Group
 Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
@@ -19,4 +22,33 @@ Only constant extra memory is allowed.
 You may not alter the values in the list's nodes, only nodes itself may be changed.
  */
 public class LC_25 {
+    public ListNode reverseKGroup(ListNode head, int k) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode prev = dummy;
+        while (prev != null) {
+            prev = reverseK(prev, k);
+        }
+        return dummy.next;
+    }
+
+    private ListNode reverseK(ListNode prev, int k) {
+        ListNode last = prev;
+        for (int i = 0; i < k + 1; i++) {
+            last = last.next;
+            if (i != k && last == null) {
+                return null;
+            }
+        }
+        ListNode tail = prev.next;
+        ListNode curr = prev.next.next;
+        while (curr != last) {
+            ListNode next = curr.next;
+            curr.next = prev.next;
+            prev.next = curr;
+            tail.next = next;
+            curr = next;
+        }
+        return tail;
+    }
 }
