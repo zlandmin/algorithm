@@ -26,7 +26,7 @@ public class LC_57 {
         List<Interval> result = new ArrayList<>();
         int index = 0;
         while (index < intervals.size() && intervals.get(index).getEnd() <= insert.getStart()) {
-            result.add(intervals.get(index));
+            result.add(intervals.get(index));  
             index++;
         }
         while (index < intervals.size() && intervals.get(index).getStart() <= insert.getEnd()) {

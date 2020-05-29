@@ -25,4 +25,17 @@ Constraints:
 0 <= nums[i][j] <= 10^5
  */
 public class LC_55 {
+    public boolean canJump(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return false;
+        }
+
+        int maxReach = 0;
+        int index = 0;
+        while (index <= maxReach &&  index < nums.length) {
+            maxReach = Math.max(maxReach, index + nums[index]);
+            index++;
+        }
+        return maxReach >= nums.length - 1;
+    }
 }

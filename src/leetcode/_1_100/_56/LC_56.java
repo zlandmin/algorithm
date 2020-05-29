@@ -3,6 +3,7 @@ package leetcode._1_100._56;
 import leetcode.common.Interval;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 /*
@@ -22,24 +23,24 @@ Explanation: Intervals [1,4] and [4,5] are considered overlapping.
 NOTE: input types have been changed on April 15, 2019. Please reset to default code definition to get new method signature.
  */
 public class LC_56 {
-    public List<Interval> merge(List<Interval> intervals) {
-        if (intervals.size() <= 1) {
+    public int[][] merge(int[][] intervals) {
+        if (intervals == null || intervals.length < 0) {
             return intervals;
         }
 
-        Collections.sort(intervals, (o1, o2) -> o1.getStart() - o2.getStart());
-        List<Interval> result = new ArrayList<>();
-        for (int i = 0; i < intervals.size(); i++) {
-            int start = intervals.get(i).getStart();
-            int end = intervals.get(i).getEnd();
-            while (i < intervals.size() && end >= intervals.get(i).getStart()) {
-                end = Math.max(end, intervals.get(i).getEnd());
+        List<int[]> res = new ArrayList<>();
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+        for (int i = 0; i < intervals.length; i++) {
+            int start = intervals[i][0];
+            int end = intervals[i][1];
+            while (i < intervals.length && end >= intervals[i][0]) {
+                end = Math.max(end, intervals[i][1]);
                 i++;
             }
-            result.add(new Interval(start, end));
+            res.add(new int[]{start, end});
             i--;
         }
-
-        return result;
+        int[][] arr = new int[res.size()][2];
+        return res.toArray(arr);
     }
 }
