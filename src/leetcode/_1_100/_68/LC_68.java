@@ -1,4 +1,8 @@
 package leetcode._1_100._68;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /*
 68. Text Justification
 Given an array of words and a width maxWidth, format the text such that each line has exactly maxWidth characters and is fully (left and right) justified.
@@ -56,4 +60,48 @@ Output:
 ]
  */
 public class LC_68 {
+    public List<String> fullJustify(String[] words, int maxWidth) {
+        List<String> res = new ArrayList<>();
+        int n = words.length;
+        int index = 0;
+        while (index < n) {
+            int totalChars = words[index].length();
+            int last = index + 1;
+            while (last < n) {
+                if (totalChars + words[last].length() + 1 > maxWidth) {
+                    break;
+                }
+                totalChars += words[last].length() + 1;
+                last++;
+            }
+
+            int gaps = last - index - 1;
+            StringBuilder sb = new StringBuilder();
+            if (last == n || gaps == 0) {
+                for (int i = index; i < last; i++) {
+                    sb.append(words[i]);
+                    sb.append(" ");
+                }
+                sb.deleteCharAt(sb.length() - 1);
+                while (sb.length() < maxWidth) {
+                    sb.append(" ");
+                }
+            }
+            else {
+                int spaces = (maxWidth - totalChars) / gaps;
+                int rest = (maxWidth - totalChars) % gaps;
+
+                for (int i = index; i < last - 1; i++) {
+                    sb.append(words[i]).append(" ");
+                    for (int j = 0; j < spaces + (i - index < rest ? 1 : 0); j++) {
+                        sb.append(" ");
+                    }
+                }
+                sb.append(words[last - 1]);
+            }
+            res.add(sb.toString());
+            index = last;
+        }
+        return res;
+    }
 }
