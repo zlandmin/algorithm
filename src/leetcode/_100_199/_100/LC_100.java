@@ -1,4 +1,4 @@
-package leetcode._1_100._100;
+package leetcode._100_199._100;
 /*
 100. Same Tree
 Given two binary trees, write a function to check if they are the same or not.
