@@ -1,3 +1,6 @@
+import morristraversal.MorrisTraversal;
+import leetcode.common.TNode;
+
 public class Main {
     public static void main(String[] args) {
 //        List<Interval> intervals = new ArrayList<>();
@@ -49,6 +52,21 @@ public class Main {
 //        }};
 //
 //        System.out.println(new LC_120().minimumTotal(triangle));
+        TNode t1 = new TNode();
+        t1.val = 4;
+        TNode t2 = new TNode();
+        t2.val = 2;
+        TNode t3 = new TNode();
+        t3.val = 5;
+        TNode t4 = new TNode();
+        t4.val = 1;
+        TNode t5 = new TNode();
+        t5.val = 3;
+        t1.left = t2;
+        t1.right = t3;
+        t2.left = t4;
+        t2.right = t5;
 
+        new MorrisTraversal().inorder(t1);
     }
 }
