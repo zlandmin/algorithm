@@ -23,4 +23,13 @@ Input: [1,3,5,6], 0
 Output: 0
  */
 public class LC_35 {
+    public int searchInsert(int[] nums, int target) {
+        int len = nums.length;
+        for (int i = 0; i < len; i++) {
+            if (target <= nums[i]) {
+                return i;
+            }
+        }
+        return len;
+    }
 }

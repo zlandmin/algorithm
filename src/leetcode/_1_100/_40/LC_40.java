@@ -1,4 +1,9 @@
 package leetcode._1_100._40;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /*
 40. Combination Sum II
 Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target.
@@ -29,4 +34,28 @@ A solution set is:
 ]
  */
 public class LC_40 {
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> res = new ArrayList<>();
+        Arrays.sort(candidates);
+        helper(res, target, 0, new ArrayList<>(), candidates);
+        return res;
+    }
+
+    private void helper(List<List<Integer>> res, int target, int start, List<Integer> cur, int[] candidates) {
+        if (target < 0) {
+            return;
+        } else if (target == 0) {
+            res.add(new ArrayList<>(cur));
+            return;
+        } else {
+            for (int i = start; i < candidates.length; i++) {
+                if (candidates[i] > target || (i > start && candidates[i] == candidates[i - 1])) {
+                    continue;
+                }
+                cur.add(candidates[i]);
+                helper(res, target - candidates[i], i + 1, cur, candidates);
+                cur.remove(cur.size() - 1);
+            }
+        }
+    }
 }
