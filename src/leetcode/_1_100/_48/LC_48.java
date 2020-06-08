@@ -44,4 +44,28 @@ rotate the input matrix in-place such that it becomes:
 ]
  */
 public class LC_48 {
+    public void rotate(int[][] matrix) {
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return;
+        }
+
+        int top = 0, left = 0;
+        int buttom = matrix.length - 1;
+        int right = matrix.length - 1;
+        int n = matrix.length;
+        while (n > 1) {
+            for (int i = 0; i < n - 1; i++) {
+                int tmp = matrix[top][left + i];
+                matrix[top][left + i] = matrix[buttom - i][left];
+                matrix[buttom - i][left] = matrix[buttom][right - i];
+                matrix[buttom][right - i] = matrix[top + i][right];
+                matrix[top + i][right] = tmp;
+            }
+            left++;
+            right--;
+            top++;
+            buttom--;
+            n -= 2;
+        }
+    }
 }

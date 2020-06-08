@@ -13,4 +13,18 @@ Follow up:
 If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.=
  */
 public class LC_53 {
+    public int maxSubArray(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+
+        int max = nums[0];
+        int curMax = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            curMax = Math.max(curMax + nums[i], nums[i]);
+            max = Math.max(curMax, max);
+        }
+
+        return max;
+    }
 }

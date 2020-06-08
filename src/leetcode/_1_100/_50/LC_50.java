@@ -22,4 +22,20 @@ Note:
 n is a 32-bit signed integer, within the range [−231, 231 − 1]
  */
 public class LC_50 {
+    public double myPow(double x, int n) {
+        if (n == 0) {
+            return 1;
+        }
+
+        double tmp = myPow(x, n / 2);
+        if (n % 2 == 0) {
+            return tmp * tmp;
+        }
+
+        if (n > 0) {
+            return x * tmp * tmp;
+        }
+
+        return tmp * tmp / x;
+    }
 }
