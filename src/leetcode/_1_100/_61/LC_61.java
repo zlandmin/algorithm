@@ -1,4 +1,7 @@
 package leetcode._1_100._61;
+
+import leetcode.common.ListNode;
+
 /*
 61. Rotate List
 Given a linked list, rotate the list to the right by k places, where k is non-negative.
@@ -21,4 +24,30 @@ rotate 3 steps to the right: 0->1->2->NULL
 rotate 4 steps to the right: 2->0->1->NULL
  */
 public class LC_61 {
+    public ListNode rotateRight(ListNode head, int k) {
+        if (head == null) {
+            return null;
+        }
+        ListNode slow = head;
+        ListNode fast = head;
+        int len = 0;
+        while (fast != null) {
+            fast = fast.next;
+            len++;
+        }
+
+        fast = head;
+        for (int i = 0; i < k % len; i++) {
+            fast = fast.next;
+        }
+        while (fast.next != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+
+        fast.next = head;
+        head = slow.next;
+        slow.next = null;
+        return head;
+    }
 }
