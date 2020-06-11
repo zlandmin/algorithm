@@ -18,4 +18,35 @@ First, iterate the array counting number of 0's, 1's, and 2's, then overwrite ar
 Could you come up with a one-pass algorithm using only constant space?
  */
 public class LC_75 {
+    public void sortColors(int[] nums) {
+        int fisrtPos = 0;
+        int len = nums.length;
+        while (fisrtPos < len && nums[fisrtPos] == 0) {
+            fisrtPos++;
+        }
+        int lastPos = len - 1;
+        while (lastPos >= 0 && nums[lastPos] == 2) {
+            lastPos--;
+        }
+
+        int index = fisrtPos;
+        while (index <= lastPos) {
+            if (nums[index] == 1) {
+                index++;
+            } else if (nums[index] == 0) {
+                swapNum(nums, index, fisrtPos);
+                fisrtPos++;
+                index++;
+            } else if (nums[index] == 2) {
+                swapNum(nums, index, lastPos);
+                lastPos--;
+            }
+        }
+    }
+
+    private void swapNum(int[] colors, int i, int j) {
+        int temp = colors[i];
+        colors[i] = colors[j];
+        colors[j] = temp;
+    }
 }

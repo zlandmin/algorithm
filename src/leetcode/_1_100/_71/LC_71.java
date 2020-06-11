@@ -1,4 +1,7 @@
 package leetcode._1_100._71;
+
+import java.util.Stack;
+
 /*
 71. Simplify Path
 Given an absolute path for a file (Unix-style), simplify it. Or in other words, convert it to the canonical path.
@@ -38,4 +41,29 @@ Input: "/a//b////c/d//././/.."
 Output: "/a/b/c"
  */
 public class LC_71 {
+    public String simplifyPath(String path) {
+        if (path.length() <= 1) {
+            return path;
+        }
+
+        Stack<String> stack = new Stack<>();
+        String[] each = path.split("/");
+        for (String cur : each) {
+            if (cur.equals("..")) {
+                if (!stack.isEmpty()) {
+                    stack.pop();
+                }
+            } else if (!cur.equals(".") && !cur.isEmpty()) {
+                stack.push(cur);
+            }
+        }
+        String res = "";
+        if (stack.isEmpty()) {
+            return "/";
+        }
+        while (!stack.isEmpty()) {
+            res = "/" + stack.pop() + res;
+        }
+        return res;
+    }
 }

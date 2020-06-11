@@ -1,4 +1,8 @@
 package leetcode._1_100._78;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /*
 78. Subsets
 Given a set of distinct integers, nums, return all possible subsets (the power set).
@@ -21,4 +25,20 @@ Output:
 ]
  */
 public class LC_78 {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        helper(0, new ArrayList<>(), nums, res);
+        return res;
+    }
+
+    private void helper(int start, List<Integer> cur, int[] nums, List<List<Integer>> res) {
+        if (start == nums.length) {
+            res.add(new ArrayList<>(cur));
+        } else {
+            helper(start + 1, cur, nums, res);
+            cur.add(nums[start]);
+            helper(start + 1, cur, nums, res);
+            cur.remove(cur.size() - 1);
+        }
+    }
 }
