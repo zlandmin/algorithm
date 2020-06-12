@@ -37,4 +37,16 @@ for (int i = 0; i < len; i++) {
 }
  */
 public class LC_80 {
+    public int removeDuplicates(int[] nums) {
+        if (nums == null || nums.length <= 2) {
+            return nums.length;
+        }
+        int loc = 2;
+        for (int index = 2; index < nums.length; index++) {
+            if (!(nums[loc - 1] == nums[loc - 2] && nums[loc - 1] == nums[index])) {
+                nums[loc++] = nums[index];
+            }
+        }
+        return loc;
+    }
 }
