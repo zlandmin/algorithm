@@ -1,4 +1,8 @@
 package leetcode._1_100._89;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /*
 89. Gray Code
 The gray code is a binary numeral system where two successive values differ in only one bit.
@@ -31,4 +35,11 @@ Explanation: We define the gray code sequence to begin with 0.
              Therefore, for n = 0 the gray code sequence is [0].
  */
 public class LC_89 {
+    public List<Integer> grayCode(int n) {
+        List<Integer> res = new ArrayList<>();
+        for (int i = 0; i < (1 << n); i++) {
+            res.add(i ^ (i >> 1));
+        }
+        return res;
+    }
 }
