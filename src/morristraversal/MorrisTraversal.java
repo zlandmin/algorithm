@@ -1,17 +1,17 @@
 package morristraversal;
 
-import leetcode.common.TNode;
+import leetcode.common.TreeNode;
 
 public class MorrisTraversal {
-    public void inorder(TNode root) {
-        TNode cur = new TNode();
+    public void inorder(TreeNode root) {
+        TreeNode cur = new TreeNode();
         cur = root;
         while (cur != null) {
             if (cur.left == null) {
                 System.out.println(cur.val);
                 cur = cur.right;
             } else {
-                TNode tmp = new TNode();
+                TreeNode tmp = new TreeNode();
                 tmp = cur.left;
                 while (tmp.right != null && tmp.right != cur) {
                     tmp = tmp.right;
