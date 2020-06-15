@@ -1,4 +1,7 @@
 package leetcode._1_100._98;
+
+import leetcode.common.TreeNode;
+
 /*
 98. Validate Binary Search Tree
 Given a binary tree, determine if it is a valid binary search tree (BST).
@@ -31,4 +34,17 @@ Output: false
 Explanation: The root node's value is 5 but its right child's value is 4.
  */
 public class LC_98 {
+    public boolean isValidBST(TreeNode root) {
+        return helper(root, null, null);
+    }
+
+    private boolean helper(TreeNode root, Integer min, Integer max) {
+        if (root == null) {
+            return true;
+        }
+        if ((min != null && root.val <= min) || (max != null && root.val >= max)) {
+            return false;
+        }
+        return helper(root.left, min, root.val) && helper(root.right, root.val, max);
+    }
 }
