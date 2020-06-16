@@ -1,4 +1,7 @@
 package leetcode._100_199._100;
+
+import leetcode.common.TreeNode;
+
 /*
 100. Same Tree
 Given two binary trees, write a function to check if they are the same or not.
@@ -34,4 +37,14 @@ Input:     1         1
 Output: false
  */
 public class LC_100 {
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        if (p == null && q == null) {
+            return true;
+        }
+        if (p == null || q == null) {
+            return false;
+        }
+
+        return p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+    }
 }
