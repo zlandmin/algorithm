@@ -1,5 +1,7 @@
 package leetcode._100_199._116;
 
+import leetcode.common.Node;
+
 /*
 116. Populating Next Right Pointers in Each Node
 You are given a perfect binary tree where all leaves are on the same level, and every parent has two children. The binary tree has the following definition:
@@ -31,5 +33,48 @@ Output: [1,#,2,3,#,4,5,6,7,#]
 Explanation: Given the above perfect binary tree (Figure A), your function should populate each next pointer to point to its next right node, just like in Figure B. The serialized output is in level order as connected by the next pointers, with '#' signifying the end of each level.
  */
 public class LC_116 {
+    public Node connect(Node root) {
+        if (root == null) {
+            return null;
+        }
+        Node fisrtAtLevel = root;
+        while (fisrtAtLevel != null) {
+            Node curAtLevel = fisrtAtLevel;
+            while (curAtLevel != null) {
+                if (curAtLevel.left != null) {
+                    curAtLevel.left.next = curAtLevel.right;
+                }
+                if (curAtLevel.right != null && curAtLevel.next != null) {
+                    curAtLevel.right.next = curAtLevel.next.left;
+                }
+                curAtLevel = curAtLevel.next;
+            }
+            fisrtAtLevel = fisrtAtLevel.left;
+        }
+        return root;
+    }
 
+//    public Node connect(Node root) {
+//        if (root == null) {
+//            return null;
+//        }
+//        helper(root);
+//        return root;
+//    }
+//
+//    private void helper(Node root) {
+//        if (root == null) {
+//            return;
+//        }
+//        if (root.left != null) {
+//            root.left.next = root.right;
+//            helper(root.left);
+//        }
+//        if (root.right != null) {
+//            if (root.next != null) {
+//                root.right.next = root.next.left;
+//            }
+//            helper(root.right);
+//        }
+//    }
 }
