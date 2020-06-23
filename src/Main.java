@@ -1,3 +1,10 @@
+import leetcode._100_199._126.LC_126;
+import leetcode._100_199._127.LC_127;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
 //        List<Interval> intervals = new ArrayList<>();
@@ -65,5 +72,12 @@ public class Main {
 //        t2.right = t5;
 //
 //        new MorrisTraversal().inorder(t1);
+
+        String beginWord = "hit", endWord = "cog";//
+        String[] strs = {"hot","dot","dog","lot","log","cog"};
+        List<String> wordList = Arrays.asList(strs);
+
+        new LC_126().findLadders(beginWord, endWord, wordList);
+        //System.out.println(new LC_127().ladderLength(beginWord, endWord, wordList));
     }
 }

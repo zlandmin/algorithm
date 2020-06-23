@@ -41,9 +41,40 @@ Explanation: The endWord "cog" is not in wordList, therefore no possible transfo
 public class LC_126 {
     Map<String, List<String>> loopUp = new HashMap<>();
     Map<String, Integer> deepMap = new HashMap<>();
+    Set<String> doneSet = new HashSet<>();
 
-    private void helper(List<String> curList, Set<String> doneSet, List<List<String>> res, String target) {
+    public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
+        List<List<String>> res = new LinkedList<>();
+        List<String> curList = new LinkedList<>();
+        int minLen = findLadder(beginWord, endWord, wordList);
+        doneSet.clear();
+        curList.add(endWord);
+        doneSet.add(endWord);
+        helper(curList, res, beginWord, minLen, 1);
 
+        return res;
+    }
+
+    private void helper(List<String> curList, List<List<String>> res, String target, int minLen, int curdeep) {
+        String curStr = curList.get(0);
+        if (curList.size() > minLen) {
+            return;
+        }
+        else if (curList.size() == minLen) {
+            if (curStr.equals(target)) {
+                res.add(new LinkedList<>(curList));
+            }
+        } else {
+            for (String str : loopUp.get(curStr)) {
+                if (!doneSet.contains(str) && deepMap.containsKey(str) && deepMap.get(str) + curdeep < minLen) {
+                    curList.add(0, str);
+                    doneSet.add(str);
+                    helper(curList, res, target, minLen, curdeep + 1);
+                    doneSet.remove(str);
+                    curList.remove(0);
+                }
+            }
+        }
     }
 
     private int findLadder(String beginWord, String endWord, List<String> wordList) {
@@ -52,7 +83,6 @@ public class LC_126 {
         }
         buildMap(wordList, beginWord);
         Queue<String> queue = new LinkedList<>();
-        Set<String> doneSet = new HashSet<>();
         int steps = 1;
         queue.offer(beginWord);
         doneSet.add(beginWord);
