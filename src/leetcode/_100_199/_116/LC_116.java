@@ -1,6 +1,6 @@
 package leetcode._100_199._116;
 
-import leetcode.common.Node;
+import leetcode.common.BNode;
 
 /*
 116. Populating Next Right Pointers in Each Node
@@ -33,13 +33,13 @@ Output: [1,#,2,3,#,4,5,6,7,#]
 Explanation: Given the above perfect binary tree (Figure A), your function should populate each next pointer to point to its next right node, just like in Figure B. The serialized output is in level order as connected by the next pointers, with '#' signifying the end of each level.
  */
 public class LC_116 {
-    public Node connect(Node root) {
+    public BNode connect(BNode root) {
         if (root == null) {
             return null;
         }
-        Node fisrtAtLevel = root;
+        BNode fisrtAtLevel = root;
         while (fisrtAtLevel != null) {
-            Node curAtLevel = fisrtAtLevel;
+            BNode curAtLevel = fisrtAtLevel;
             while (curAtLevel != null) {
                 if (curAtLevel.left != null) {
                     curAtLevel.left.next = curAtLevel.right;

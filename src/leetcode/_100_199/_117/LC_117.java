@@ -1,7 +1,6 @@
 package leetcode._100_199._117;
 
-import com.sun.jmx.snmp.SnmpNull;
-import leetcode.common.Node;
+import leetcode.common.BNode;
 
 /*
 117. Populating Next Right Pointers in Each Node II
@@ -34,13 +33,13 @@ Output: [1,#,2,3,#,4,5,7,#]
 Explanation: Given the above binary tree (Figure A), your function should populate each next pointer to point to its next right node, just like in Figure B. The serialized output is in level order as connected by the next pointers, with '#' signifying the end of each level.
  */
 public class LC_117 {
-    public Node connect(Node root) {
+    public BNode connect(BNode root) {
         if (root == null) {
             return root;
         }
-        Node firstNodeLevel = root;
-        while (firstNodeLevel != null) {
-            Node curLevel = firstNodeLevel;
+        BNode firstBNodeLevel = root;
+        while (firstBNodeLevel != null) {
+            BNode curLevel = firstBNodeLevel;
             while (curLevel != null) {
                 if (curLevel.left != null) {
                     if (curLevel.right != null) {
@@ -54,37 +53,37 @@ public class LC_117 {
                 }
                 curLevel = curLevel.next;
             }
-            firstNodeLevel = findNextFirstNode(firstNodeLevel);
+            firstBNodeLevel = findNextFirstNode(firstBNodeLevel);
         }
         return root;
     }
 
-    private Node findNextFirstNode(Node node) {
-        while (node != null) {
-            if (node.left != null) {
-                return node.left;
+    private BNode findNextFirstNode(BNode BNode) {
+        while (BNode != null) {
+            if (BNode.left != null) {
+                return BNode.left;
             }
-            if (node.right != null) {
-                return node.right;
+            if (BNode.right != null) {
+                return BNode.right;
             }
-            node = node.next;
+            BNode = BNode.next;
         }
-        return node;
+        return BNode;
     }
 
-    private Node findCloestNode(Node node) {
-        if (node == null) {
+    private BNode findCloestNode(BNode BNode) {
+        if (BNode == null) {
             return null;
         }
-        node = node.next;
-        while (node != null) {
-            if (node.left != null) {
-                return node.left;
+        BNode = BNode.next;
+        while (BNode != null) {
+            if (BNode.left != null) {
+                return BNode.left;
             }
-            if (node.right != null) {
-                return node.right;
+            if (BNode.right != null) {
+                return BNode.right;
             }
-            node = node.next;
+            BNode = BNode.next;
         }
         return null;
     }
