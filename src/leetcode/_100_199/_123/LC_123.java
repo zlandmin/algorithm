@@ -28,4 +28,28 @@ Output: 0
 Explanation: In this case, no transaction is done, i.e. max profit = 0.
  */
 public class LC_123 {
+    public int maxProfit(int[] prices) {
+        if (prices == null || prices.length == 0) {
+            return 0;
+        }
+        int n = prices.length;
+        int[][] hold = new int[n][3];
+        int[][] unhold = new int[n][3];
+        hold[0][0] = -prices[0];
+        for (int i = 1; i < n; i++) {
+            hold[i][0] = Math.max(hold[i - 1][0], -prices[i]);
+        }
+        for (int j = 0; j <= 2; j++) {
+            hold[0][j] = -prices[0];
+        }
+
+        for (int i = 1; i < n; i++) {
+            for (int j = 1; j < 3; j++) {
+                hold[i][j] = Math.max(hold[i - 1][j], unhold[i - 1][j] - prices[i]);
+                unhold[i][j] = Math.max(hold[i - 1][j - 1] + prices[i], unhold[i - 1][j]);
+            }
+        }
+
+        return Math.max(hold[n - 1][2], unhold[n - 1][2]);
+    }
 }
