@@ -30,8 +30,7 @@ public class PostorderTraversal {
             return res;
         }
         Stack<TreeNode> stack = new Stack<>();
-        stack.push(root);
-        TreeNode cur = root.right;
+        TreeNode cur = root;
         while (!stack.isEmpty() || cur != null) {
             while (cur != null) {
                 stack.push(cur);

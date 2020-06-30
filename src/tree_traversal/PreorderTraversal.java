@@ -31,8 +31,7 @@ public class PreorderTraversal {
             return res;
         }
         Stack<TreeNode> stack = new Stack<>();
-        stack.push(root);
-        TreeNode cur = root.left;
+        TreeNode cur = root;
         while (!stack.isEmpty() || cur != null) {
             while (cur != null) {
                 stack.push(cur);
