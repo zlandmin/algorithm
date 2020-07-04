@@ -32,5 +32,5 @@ Write a SQL query to find employees who have the highest salary in each of the d
 +------------+----------+--------+
  */
 public class LC_184 {
-
+// not a algorithm question
 }

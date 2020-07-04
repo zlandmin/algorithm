@@ -24,5 +24,5 @@ For example, given the above Logs table, 1 is the only number that appears conse
 +-----------------+
  */
 public class LC_180 {
-
+// not a algorithm question
 }
