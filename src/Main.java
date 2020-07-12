@@ -71,11 +71,5 @@ public class Main {
 //
 //        new MorrisTraversal().inorder(t1);
 
-        String beginWord = "hit", endWord = "cog";//
-        String[] strs = {"hot","dot","dog","lot","log","cog"};
-        List<String> wordList = Arrays.asList(strs);
-
-        new LC_126().findLadders(beginWord, endWord, wordList);
-        //System.out.println(new LC_127().ladderLength(beginWord, endWord, wordList));
     }
 }
