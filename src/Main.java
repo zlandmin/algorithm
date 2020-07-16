@@ -1,6 +1,8 @@
 import leetcode._100_150._126.LC_126;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Main {
@@ -70,6 +72,5 @@ public class Main {
 //        t2.right = t5;
 //
 //        new MorrisTraversal().inorder(t1);
-
     }
 }
