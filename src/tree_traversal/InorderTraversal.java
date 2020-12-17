@@ -1,6 +1,5 @@
 package tree_traversal;
 
-import com.sun.jmx.snmp.SnmpNull;
 import leetcode.common.TreeNode;
 
 import java.util.ArrayList;
